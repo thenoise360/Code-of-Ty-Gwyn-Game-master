@@ -54,7 +54,7 @@ while (e1 == 1):
 		break
 	else: playerName=input("\nSorry, I don't recognise that name! please try again \n-->").lower()
 
-print("\nOh so you are the famous %s! Let's put you in your room!"	% (playerName))
+print("\nOh so you are the famous %s! Let's put you in your room!\n\n|<===========================================>|\n\n"	% (playerName))
 	
 #Define Starting Point
 if playerName == "jack":
