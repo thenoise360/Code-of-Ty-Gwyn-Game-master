@@ -64,7 +64,7 @@ elif playerName == "tom":
 else: currentRoom = 6
 
 
-print ("You are in your room ready to go on a night out.\nYou are sat on your bed and look around your room.\nIn front of you, you can see your phone and wallet on the desk.\nThere is a book shelf with books in and an empty beer bottle./nYou look towards your left and you can see that the window is closed.\nTo your right is you wardrobe which is closed, and that your sink is empty.\nOn the other side of the other side of the wardrobe is the door out to the communal hallway.\n")
+print ("You are in your room ready to go on a night out.\nYou are sat on your bed and look around your room.\nIn front of you, you can see your phone and wallet on the desk.\nThere is a book shelf with books in and an empty beer bottle.\nYou look towards your left and you can see that the window is closed.\nTo your right is you wardrobe which is closed, and that your sink is empty.\nOn the other side of the wardrobe is the door out to the communal hallway.\n")
 
 action = input("\nWhere would you like to go next?\n-->").lower()
 
