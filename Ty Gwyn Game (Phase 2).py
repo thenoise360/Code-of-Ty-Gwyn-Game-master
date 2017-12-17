@@ -1,19 +1,12 @@
-def showInstructions():
-    #print the  main menu and controls
-    print("===========================================")
-    print("Welcome to the Ty Gwyn night out adventure!")
-    print("Commands:")
-    print("'go [direction]'(north, south, east, west)")
-    print("'get [item]'")
-    print("MISSON: Leave in the taxi to go on a famous Ty Gwyn night out in Cardiff.")
+e1 = 1
 
-def Player()
-PlayerName = input("But before we start, what is your name?").lower()
-if PlayerName == "jack":
-    print("Oh so you are the famous " + PlayerName + "! Let's put you in your room!")
-elif PlayerName == "tom":
-    print("Oh so you are the famous " + PlayerName + "! Let's put you in your room!")
-else: print("You are not cool enough to be included in this game")	
+print ("\nWelcome to the Ty Gwyn night out adventure!\n\nIf you ever get stuck, just type \'help\' to get a list of instructions, or \'hint\' to get a small hint on the puzzle in front of you.\n\nEnjoy!\n\n - Jack and Tom\n\n|<===========================================>|\n")
+
+showInstructions = ("|<===========================================>|\n\nWelcome to the Ty Gwyn night out adventure\nCommands:\ngo [direction] = (north, south, east, west)\nget [item]\n\nMISSON: Leave in the taxi to go on a famous Ty Gwyn night out in Cardiff.\n\n|<===========================================>|\n")
+
+def Player():
+    #Ask the user their name to determine starting point
+    print("But before we start, what is your name?\n-->")
 
 def showStatus():
     #print the player's current status
@@ -24,7 +17,6 @@ def showStatus():
         print("There is a " + rooms[currentRoom]["item"])
     print("===========================================")
 
-	
 #The player's starting Inventory
 inventory = []
 
@@ -47,14 +39,41 @@ rooms = {
             6 : { "name"    : "The Great Abyss. You are not welcome to play this game!"}
         }
 
-showInstructions()
+Player()
+playerName=input().lower()
 
+while (e1 == 1):
+	if playerName == "jack":
+		e1 = e1 - 1
+		break
+	elif playerName == "help":
+		print (showInstructions)
+		playerName=input("When you have read the instructions, try typing in your name again! \n-->").lower()
+	elif playerName == "tom":
+		e1 = e1 - 1
+		break
+	else: playerName=input("\nSorry, I don't recognise that name! please try again \n-->").lower()
+
+print("\nOh so you are the famous %s! Let's put you in your room!"	% (playerName))
+	
 #Define Starting Point
-if PlayerName == "Jack":
+if playerName == "jack":
     currentRoom = 1
-elif PlayerName == "Tom":
+elif playerName == "tom":
     currentRoom = 2
 else: currentRoom = 6
+
+
+print ("You are in your room ready to go on a night out.\nYou are sat on your bed and look around your room.\nIn front of you, you can see your phone and wallet on the desk.\nThere is a book shelf with books in and an empty beer bottle./nYou look towards your left and you can see that the window is closed.\nTo your right is you wardrobe which is closed, and that your sink is empty.\nOn the other side of the other side of the wardrobe is the door out to the communal hallway.\n"
+
+action = input("\nWhere would you like to go next?\n-->").lower()
+
+end
+
+
+
+
+#CURRENT FUNCIONAL POINT ---------------------------------------------------------------------#
 
 #Looping logic of game:
 while True:
@@ -102,11 +121,3 @@ while True:
         print("Try to have a cooler name next time.")
         print("GAME OVER")
         break
-
-
-        
-
-    
-    
-
-                  
