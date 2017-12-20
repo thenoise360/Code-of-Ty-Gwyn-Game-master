@@ -2,54 +2,99 @@
 
 showInstructions = ("|<===========================================>|\n\nWelcome to the Ty Gwyn night out adventure\nCommands:\n Type \"Go To\" and one of the objects in the room = (e.g. desk, wardrobe, bed, sink, shelf, door)\nget [item]\n\nMISSON: Leave in the taxi to go on a famous Ty Gwyn night out in Cardiff.\n\n|<===========================================>|\n")
 
+desk-status == "incomplete"
+
 def desk():
-	print ("You are standing at the desk. On the desk you can see your wallet.\nYou remember leaving your phone here but it doesn't appear to be on the surface top.\nIt must be in the area but you'll have to look.")
-	action = input("\nWhere would you like to search for your phone?\n-->").lower()
-	#This refers to "Exit Desk" = ed. I will use this format for all of the exit codes (as its a little easier to use)	
-	
-	ed = 1
-	while (ed ==1 ):
-		if action == "top drawer":
-			action = input("You look into the top drawer and it appears empty.\nYou will need to continue searching!\n-->").lower()
-		elif action == "bottom drawer":
-			action = input("You look into the bottom drawer and it appears empty.\nYou will need to continue searching!\n-->").lower()
-		elif action == "under the desk":
-			ed = ed - 1
-			print ("It appears your phone must have fallen on the floor.\nIt is added to your inventory")
-			break
-		elif action == "behind the desk":
-			action = input("You look behind the desk and don\'t see your phone.\nYou will need to continue searching!\n-->").lower()
-		elif action == "help":
-			print (showInstructions)
-			action = input("When you have read the instructions, keep looking! \n-->").lower()
-		elif action == "hint":
-			print ("Here you will need to look under the desk, behind the desk, and in the top and bottom drawer to find what you are looking for.")
-			action = input("When you are ready to keep looking, try typing in one of the instructions shown! \n-->").lower()
-		elif action == "go back":
-			bedStart()
-			break
-		elif action == "go to desk":
-			desk()
-			break
-		elif action == "go to bed":
-			bed()
-			break
-		elif action == "go to start":
-			bedStart()
-			break
-		elif action == "go to sink":
-			sink()
-			break
-		elif action == "go to shelf":
-			shelf()
-			break
-		elif action == "go to wardrobe":
-			wardrobe()
-			break
-		elif action == "go to door":
-			door()
-			break
-		else: action=input("It doesn't seem like you are looking in the right places, something else, or type \'hint\' if you get stuck! \n-->").lower()
+  
+  ed-end == 1
+
+  while (ed-end == 1):
+    if desk-status == "complete":
+      print ("It looks like you already have the items you need from this area.\ntry looking in another area.")
+      action = input("\nWhere would you like to go to next?\n-->").lower()
+  
+      ed-end-complete == 1
+  
+      while (ed-end-complete == 1):
+        if action == "help":
+      	  print (showInstructions)
+      	  action = input("When you have read the instructions, keep looking! \n-->").lower()
+        elif action == "go back":
+          bedStart()
+          break
+        elif action == "go to desk":  
+          desk()
+          break
+        elif action == "go to bed":
+          bed()
+          break
+        elif action == "go to start":
+          bedStart()
+          break
+        elif action == "go to sink":
+          sink()
+          break
+        elif action == "go to shelf":
+          shelf()
+          break
+        elif action == "go to wardrobe":
+          wardrobe()
+          break
+        elif action == "go to door":
+          door()
+          break
+        else: action=input("That isn't a location in this room. Type \'hint\' if you get stuck! \n-->").lower()
+
+
+    else :
+      print ("You are standing at the desk. On the desk you can see your wallet.\nYou remember leaving your phone here but it  doesn't appear to be on the surface top.\nIt must be in the area but you'll have to look.")
+      action = input("\nWhere would you like to search for your phone?\n-->").lower()
+      #This refers to "Exit Desk" = ed. I will use this format for all of the exit codes (as its a little easier to use)	
+	  
+    ed = 1
+    while (ed ==1):
+      if action == "top drawer":
+        action = input("You look into the top drawer and it appears empty.\nYou will need to continue searching!\n-->").lower()
+      elif action == "bottom drawer":
+        action = input("You look into the bottom drawer and it appears empty.\nYou will need to continue searching!\n-->").lower()
+      elif action == "under the desk":
+        ed = ed - 1
+        print ("It appears your phone must have fallen on the floor.\nIt is added to your inventory")
+        desk-status == "complete"
+        break
+      elif action == "behind the desk":
+        action = input("You look behind the desk and don\'t see your phone.\nYou will need to continue searching!\n-->").lower()
+      elif action == "help":
+        print (showInstructions)
+        action = input("When you have read the instructions, keep looking! \n-->").lower()
+      elif action == "hint":
+        print ("Here you will need to look under the desk, behind the desk, and in the top and bottom drawer to find what you are ooking for.")
+        action  = input("When you are ready to keep looking, try typing in one of the instructions shown! \n-->").lower()
+      elif action == "go back":
+        bedStart()
+        break
+      elif action == "go to desk":
+        desk()
+        break
+      elif action == "go to bed":
+        bed()
+        break
+      elif action == "go to start":
+        bedStart()
+        break
+      elif action == "go to sink":
+        sink()
+        break
+      elif action == "go to shelf":
+        shelf()
+        break
+      elif action == "go to wardrobe":
+        wardrobe()
+        break
+      elif action == "go to door":
+        door()
+        break
+      else: action=input("It doesn't seem like you are looking in the right places, something else, or type \'hint\' if you get stuck! \n-->").lower()
 
 
 def bedStart():
