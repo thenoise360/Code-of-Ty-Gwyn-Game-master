@@ -39,6 +39,8 @@ TGs = {
 MOB = random.randint(1,11)
 
 #Setting the health stats for the game (will need to be more complex later)
+#//<-----Jack Notes----->\\#
+# Worth making it 6 / 8?
 playerhealth = 3
 mobhealth = 3
 
@@ -55,6 +57,11 @@ while (playerhealth != 0):
     print ('You can either throw a steady shot(1) or a trick shot (2)')
     playerinput=input()
 #Creating a nested while that only allows for 1's and 2's to be entered
+
+#//<-----Jack Notes----->\\#
+#Could create a loop based on - while (playerinput == 1|2) - This will only loop if one or two
+#Currently it looks like it will only loop if 2 is selected?
+
     while (playerinput != '1'):
         if playerinput == '2':
             break
@@ -72,6 +79,22 @@ while (playerhealth != 0):
 ##BATTLE LOGIC
 #Player chooses 1 or 2. Randomiser creates either a 1 or a 2. If the numbers
 #match then the player scores a hit, nothing happens if not
+
+#//<-----Jack Notes----->\\#
+#Possibly make it that a trick shot means you can get rid of 2 health, or that the other player takes two turns to make it riskier.
+#If you miss you can also loose 2, or the mob gets 2 goes. The same can be said for missing a standard shot means they only lose one / get a single go?:
+    
+    # if playerinput==randominput:
+        #mobhealth=mobhealth-playerinput
+        #print ('You throw the ball and get it into one of', TGs[MOB], 'cups.')
+        #print(TGs[MOB], 'has',mobhealth, 'cups left.')
+    #elif playerinput != randominput:
+        #playerHealth=playerHealth-playerinput
+        #print ('You missed. you lose %s cups.') % (playerinput)
+        #print (TGs[MOB], 'still has',mobhealth, 'cups left.')
+
+#MOB then has the same logic applied, except that its 'input' is also
+#randomised
     if playerinput==randominput:
         mobhealth=mobhealth-1
         print ('You throw the ball and get it into one of', TGs[MOB], 'cups.')
@@ -80,6 +103,11 @@ while (playerhealth != 0):
         print ('You missed.')
         print (TGs[MOB], 'still has',mobhealth, 'cups left.')
 #MOB then has the same logic applied, except that its 'input' is also
+
+#//<-----Jack Notes----->\\#
+#Could apply the same negative logic here - The mob can hurt itself?
+#If not now then possibly in a later chapter (or in a different form e.g. tool health?)
+
 #randomised
     if mobhealth!=0:
         print (TGs[MOB], ' lines up a shot and throws...')
