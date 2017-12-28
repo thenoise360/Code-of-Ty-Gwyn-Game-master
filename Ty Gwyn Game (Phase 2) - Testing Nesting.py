@@ -8,7 +8,6 @@ showInstructions = ("|<===========================================>|\n\nWelcome 
 
 deskStatus = "incomplete"
 deskItemLocation = random.randint(1,4)
-print (deskItemLocation)
 
 #STARTING BLOCK
 
