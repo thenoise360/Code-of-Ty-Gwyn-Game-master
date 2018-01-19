@@ -8,12 +8,14 @@ showInstructions = ("|<===========================================>|\n\nWelcome 
 
 deskStatus = "incomplete"
 bedStatus = "incomplete"
+sinkStatus = "incomplete"
 deskItemLocation = random.randint(1,4)
 bedItemLocation = random.randint(1,4)
+sinkItemLocation = random.radint(1,3)
 
 #STARTING BLOCK
 
-def bedStart(deskStatus,bedStatus,deskItemLocation,bedItemLocation):
+def bedStart(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation):
 	print ("You are in your room ready to go on a night out.\nYou are sat on your bed and look around your room.\nIn front of you, you can see your desk. It has 2 draws.\nThere is a book shelf with books in and an empty beer bottle.\nYou look towards your left and you can see that the window is closed.\nTo your right is you wardrobe which is closed, and that your sink is empty.\nOn the other side of the wardrobe is the door out to the communal hallway.\n")
 	action = input("\nWhere would you like to go next?\n-->").lower()
 	
@@ -22,25 +24,25 @@ def bedStart(deskStatus,bedStatus,deskItemLocation,bedItemLocation):
 	eb = 1
 	while (eb ==1 ):
 		if action == "go to desk":
-			desk(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation)
+			desk(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)
 			break
 		elif action == "go to bed":
-			bed(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation)
+			bed(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)
 			break
 		elif action == "go to start":
-			bedStart(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation)
+			bedStart(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)
 			break
 		elif action == "go to sink":
-			sink(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation)
+			sink(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)
 			break
 		elif action == "go to shelf":
-			shelf(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation)
+			shelf(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)
 			break
 		elif action == "go to wardrobe":
-			wardrobe(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation)
+			wardrobe(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)
 			break
 		elif action == "go to door":
-			door(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation)
+			door(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)
 			break
 		elif action == "help":
 			print (showInstructions)
@@ -52,18 +54,18 @@ def bedStart(deskStatus,bedStatus,deskItemLocation,bedItemLocation):
 
 #DESK BLOCK
 
-def desk(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation):
+def desk(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation):
 	deskStatus = deskStatus
 	action = action
 	if deskStatus == "complete":
 		print ("It looks like you already have the items you need from this area.\ntry looking in another area.")
-		deskNest1(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation)
+		completeNest(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)
 	
 	else :
-		print ("You are standing at the desk. On the desk you can see your wallet.\nYou remember leaving your phone here but it doesn't appear to be on the surface top.\nIt must be in the area but you'll have to look.")
-		deskNest2(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation)
+		print ("You are standing at the desk.\nYou remember leaving your phone here but it doesn't appear to be on the surface top.\nIt must be in the area but you'll have to look.")
+		deskNest(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)
 
-def deskNest1(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation):
+def completeNest(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation):
 	action = input("\nWhere would you like to go to next?\n-->").lower()
 	edEndComplete = 1
 	while (edEndComplete == 1):
@@ -71,32 +73,32 @@ def deskNest1(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation):
 			print (showInstructions)
 			action = input("When you have read the instructions, keep looking! \n-->").lower()
 		elif action == "go back":
-			bedStart(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation)
+			bedStart(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)
 			break
 		elif action == "go to desk":	
-			desk(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation)
+			desk(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)
 			break
 		elif action == "go to bed":
-			bed(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation)
+			bed(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)
 			break
 		elif action == "go to start":
-			bedStart(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation)
+			bedStart(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)
 			break
 		elif action == "go to sink":
-			sink(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation)
+			sink(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)
 			break
 		elif action == "go to shelf":
-			shelf(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation)
+			shelf(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)
 			break
 		elif action == "go to wardrobe":
-			wardrobe(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation)
+			wardrobe(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)
 			break
 		elif action == "go to door":
-			door(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation)
+			door(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)
 			break
 		else: action=input("That isn't a location in this room. Type \'help\' if you get stuck! \n-->").lower()
 
-def deskNest2(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation):
+def deskNest(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation):
 	action = input("\nWhere would you like to search for your phone?\n-->").lower()
 		#This refers to "Exit Desk" = ed. I will use this format for all of the exit codes (as its a little easier to use)
 	ed = 1
@@ -106,7 +108,7 @@ def deskNest2(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation):
 				ed = ed - 1
 				print ("You found your phone in the top drawer.\nIt is added to your inventory\n\n|<===========================================>|\n")
 				deskStatus = "complete"
-				desk(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation)
+				desk(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)
 			else:
 				action = input("You look into the top drawer and it appears empty.\nYou will need to continue searching!\n-->").lower()
 		elif action == "bottom drawer":
@@ -114,7 +116,7 @@ def deskNest2(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation):
 				ed = ed - 1
 				print ("You found your phone in the bottom drawer.\nIt is added to your inventory\n\n|<===========================================>|\n")
 				deskStatus = "complete"
-				desk(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation)
+				desk(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)
 			else:
 				action = input("You look into the bottom drawer and it appears empty.\nYou will need to continue searching!\n-->").lower()
 		elif action == "under the desk":
@@ -122,7 +124,7 @@ def deskNest2(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation):
 				ed = ed - 1
 				print ("It appears your phone must have fallen on the floor.\nIt is added to your 	inventory\n\n|<===========================================>|\n")
 				deskStatus = "complete"
-				desk(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation)		
+				desk(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)		
 				break			
 			else:
 				action = input("You look under the desk and there is nothing there.\nYou will need to continue searching!\n-->").lower()
@@ -131,7 +133,7 @@ def deskNest2(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation):
 				ed = ed - 1
 				print ("It appears your phone must have fallen behind the desk.\nIt is added to your inventory\n\n|<===========================================>|\n")
 				deskStatus = "complete"
-				desk(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation)		
+				desk(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)		
 				break
 			else:
 				action = input("You look behind the desk and don\'t see your phone.\nYou will need to continue searching!\n-->").lower()
@@ -142,68 +144,191 @@ def deskNest2(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation):
 			print ("Here you will need to look under the desk, behind the desk, and in the top and bottom drawer to find what you are looking for.")
 			action	= input("When you are ready to keep looking, try typing in one of the instructions shown! \n-->").lower()
 		elif action == "go back":
-			bedStart(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation)
+			bedStart(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)
 			break
 		elif action == "go to desk":
-			desk(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation)
+			desk(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)
 			break
 		elif action == "go to bed":
-			bed(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation)
+			bed(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)
 			break
 		elif action == "go to start":
-			bedStart(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation)
+			bedStart(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)
 			break	 
 		elif action == "go to sink":
-			sink(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation)
+			sink(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)
 			break
 		elif action == "go to shelf":
-			shelf(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation)
+			shelf(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)
 			break
 		elif action == "go to wardrobe":
-			wardrobe(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation)
+			wardrobe(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)
 			break
 		elif action == "go to door":
-			door(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation)
+			door(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)
 			break
 		else: action=input("It doesn't seem like you are looking in the right places, something else, or type \'hint\' if you get stuck! \n-->").lower()
 
 #BED BLOCK
 
-def bed(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation):
+def bed(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation):
   bedStatus = bedStatus
   action = action
   if bedStatus == "complete":
     print ("It looks like you already have the items you need from this area.\nTry looking in another area.")
-    bedNest1(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation)
+    completeNest(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)
   
   else :
     print ("You are standing by your bed. Your bed is untidy but you also can't be arsed to make it.\nYou remember you had your watch in bed but you look to your wrist but it isnt there.\nIt must be in the area but you'll have to look...")
-    bedNest2(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation) 
+    bedNest(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation) 
 
-def bedNest1(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation):
-  print("Hello")
-  
-def bedNest2(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation):
-  print("Goodbye")	
+def bedNest(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation):
+  action = input("\nWhere would you want to look first?\n-->").lower()
+	ebEndComplete = 1
+	while (ebEndComplete == 1):
+		if action == "under the bed":
+            if bedItemLocation == 1:
+                eb = eb + 1
+                print ("Your watch must have fallen on the floor during your pre night out power nap.\nYou collect it and put it on your wrist\n\n|<===========================================>|\n")
+                bed(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)
+            else:
+                action = input("\nYou look under the bed but all you see is old socks and shit you can't be bothered to tidy up. You will need to continue looking.\n-->")
+        elif action == "behind the bed":
+            if bedItemLocation == 2:
+                eb = eb + 1
+                print ("Your watch must have fallen behind your bed during your pre night out power nap.\nYou collect it and put it on your wrist\n\n|<===========================================>|\n")
+                bed(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)
+            else:
+                action = input("\nYou look behind the bed but all you see is dubious looking tissues. You will need to continue looking.\n-->")
+        elif action == "in the duvet":
+            if bedItemLocation == 3:
+                eb = eb +1
+                print ("Your watch must have fallen off in the duvet during your pre night out power nap.\nYou collect it and put it on your wrist\n\n|<===========================================>|\n")
+                bed(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)
+            else:
+                action = input("\nYou look in the duvet but you can't see your watch. You dump the duvet back on the bed in a heap and continue searching.\n-->")
+        elif action == "under your pillow"
+            if bedItemLocation == 4:
+            	eb = eb + 1
+               	print("\nYou look under your pillow and you see a pair of old boxers (which should probably go in the wash) and your watch which you collect and place on your wrist\n\n|<===========================================>|\n")
+                bed(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)
+            else:
+                action = input("You look under your pillow and all you see is a crusty pair of boxers. You hide them again with the pillow and continue looking.\n-->")
+   		elif action == "help":
+    		print (showInstructions)
+			action = input("When you have read the instructions, keep looking! \n-->").lower()
+		elif action == "hint":
+			print ("You should probably look behind and under your bed, under your pillow and under your duvet as thats where it is likely to be")
+			action	= input("When you are ready to keep looking, try typing in one of the instructions shown! \n-->").lower()
+		elif action == "go back":
+			bedStart(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)
+			break
+		elif action == "go to desk":
+			desk(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)
+			break
+		elif action == "go to bed":
+			bed(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)
+			break
+		elif action == "go to start":
+			bedStart(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)
+			break	 
+		elif action == "go to sink":
+			sink(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)
+			break
+		elif action == "go to shelf":
+			shelf(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)
+			break
+		elif action == "go to wardrobe":
+			wardrobe(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)
+			break
+		elif action == "go to door":
+			door(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)
+			break
+		else: action=input("It doesn't seem like you are looking in the right places, something else, or type \'hint\' if you get stuck! \n-->").lower()	
   
 #SINK BLOCK
 
-def sink(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation):
-	print ("Sink")
+def sink(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation):
+      sinkStatus = sinkStatus
+  action = action
+  if sinkStatus == "complete":
+    print ("It looks like you already have the items you need from this area.\nTry looking in another area.")
+    completeNest(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)
+  
+  else :
+    print ("You look into the sink. You see white rings running from the top to the bottom.\nThis must have been from when you decided to wash in the sink when the showers were full.\nYou see a your murkey reflection in front of you.\n You should clean the mirror. There is a noticable cluster of finger prints to the right of the mirror.\nIt appears to have been moved many times\nYou remember seeing your wallet there last time you were shaving - although it was some time ago.\nIt must be in the area but you'll have to look...")
+    sinkNest(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation) 
+
+def sinkNest(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation):
+  action = input("\nWhere would you want to look first?\n-->").lower()
+	esEndComplete = 1
+	while (esEndComplete == 1):
+		if action == "in the sink":
+            if sinkItemLocation == 1:
+                eb = eb + 1
+                print ("It was right in front of you all along. Are you losing your sight?.\nYou collect it and put it in your pocket\n\n|<===========================================>|\n")
+                sink(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)
+            else:
+                action = input("\nAll you see is those white rings and dispare fills you up.\nYou really should clean the sink but you would be late for the night out...\nYou will need to continue looking.\n-->")
+        elif action == "behind the mirror":
+			if sinkItemLocation == 2:
+    			eb = eb + 1
+                print ("You grab the right and side of the mirror and pull it forward.\nYou revel a set of shelves where you see you toilitaries, painkillers and your wallet.\nYou collect it and put itin your pocket\n\n|<===========================================>|\n")
+                sink(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)
+            else:
+    			action = input("\nYou grab the right and side of the mirror and pull it forward.\nYou revel a set of shelves where you see you toilitaries, painkillers, but no wallet. You will need to continue looking.\n-->")
+        elif action == "on the floor":
+            if sinkItemLocation == 3:
+    			eb = eb + 1 
+				print ("You look to the floor and see your wallet\nThere's no cash in it (of course) and an old out of date condom.\nYou collect it and put it on your wrist\n\n|<===========================================>|\n")
+				sink(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)
+            else:
+                action = input("If it was on the floor you probably would have stepped on it.\nYou continue searching...\n-->")
+   		elif action == "help":
+    			print (showInstructions)
+			action = input("When you have read the instructions, keep looking! \n-->").lower()
+		elif action == "hint":
+			print ("You should probably look in the sink or on the floor. Now you mention it, that mirror looks like there could be something behind it...")
+			action	= input("When you are ready to keep looking, try typing in one of the instructions shown! \n-->").lower()
+		elif action == "go back":
+			bedStart(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)
+			break
+		elif action == "go to desk":
+			desk(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)
+			break
+		elif action == "go to bed":
+			bed(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)
+			break
+		elif action == "go to start":
+			bedStart(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)
+			break	 
+		elif action == "go to sink":
+			sink(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)
+			break
+		elif action == "go to shelf":
+			shelf(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)
+			break
+		elif action == "go to wardrobe":
+			wardrobe(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)
+			breask
+		elif action == "go to door":
+			door(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation)
+			break
+		else: action=input("It doesn't seem like you are looking in the right places, something else, or type \'hint\' if you get stuck! \n-->").lower()	
 
 #SHELF BLOCK
 
-def shelf(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation):
+def shelf(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation):
 	print ("Shelf")
 
 #WARDROBE BLOCK
 
-def wardrobe(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation):
+def wardrobe(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation):
 	print ("Wardrobe")
 
 #DOOR BLOCK
 
-def door(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation):
+def door(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation):
 	print ("Door")
 				
 		
@@ -283,7 +408,7 @@ while True:
 	showStatus()
 
 	#get the player's next move
-	#.split(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation) breaks it up into a list array
+	#.split(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation) breaks it up into a list array
 	#eg typing 'go east' would give the list:
 	#['go','east']
 	move = input(">").lower().split()
