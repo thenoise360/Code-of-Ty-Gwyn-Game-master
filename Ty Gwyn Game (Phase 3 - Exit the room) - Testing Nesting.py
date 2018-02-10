@@ -85,7 +85,7 @@ def playerTurn(action,mobHealth,playerHealth):
 		playerInput = input('Take your shot\n-->')
 		randomInput= random.randint(1,3)
 		if playerInput == 1|2:
-   			if playerInput>randomInput:
+   			if playerInput<randomInput:
        			mobHealth=mobHealth-1
        			print ('You throw the ball and get it into one of ', TGs[MOB], ' cups.')
 				mobHealth = mobHealth - playerInput
@@ -113,7 +113,7 @@ def mobTurn(action,mobHealth,playerHealth):
        	print (TGs[MOB], ' lines up a shot and throws...')
        	mobInput = random.randint(1,2)
        	mRandomInput = random.randint(1,3)
-       	if mobInput > mRandomInput:
+       	if mobInput < mRandomInput:
            	print (TGs[MOB], ' gets the shot in one of your cups!')
            	playerHealth = playerHealth - mRandomInput
            	print ('You have ',playerHealth, ' cups left.')
