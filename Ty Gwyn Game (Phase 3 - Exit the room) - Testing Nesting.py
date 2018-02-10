@@ -34,7 +34,105 @@ shelfItemLocation = random.radin(1,5)
 
 #COMBAT BLOCKS (ADD TOM'S CODE HERE)
 
+def tyGwyndo(action):
+    #This is to determine the 'Variable Mob' (vmob) which is to have the
+	#person who's not playing as the final mob option.
+	#This will need to be more complex in future when the players are more
+	#than just Tom or Jack
+	if playername == 'jack':
+   		vmob="Tom"
+	elif playername == 'tom':
+   		vmob="Jack"
 
+	#Dictionary of Ty Gwyners (TGs)
+	TGs = {
+       	1: "Zaz",
+       	2: "Matt",
+       	3: "Ross",
+       	4: "Charlie",
+       	5: "Chris",
+       	6: "Bron",
+       	7: "Sara",
+       	8: "Liv",
+       	9: "Em",
+       	10: "Ben",
+       	11: vmob}
+
+	# Random allocation of a number to the mob which coincides with the
+	#dictionary above
+	MOB = random.randint(1,11)
+
+	#Setting the health stats for the game (will need to be more complex later)
+	playerHealth = 6
+	mobHealth = 6
+
+	#Starting the narrative
+	print ('You are approached by ', TGs[MOB], ' to play a game of Ty Gwyndo.')
+	print ('You excitedly accept.')
+	print ('You need to throw the ball into all 6 of ',TGs[MOB], ' cups.')
+	print ('The first person to lose all 6 cups is the loser.')
+	print ('If you land a normal shot, you can remove 1 cup. If you land a trick shot you can remove 2 cups.')
+	coinFlip = random.randint(1,2)
+	if coinFlip == 1:
+    	print ('You flip a coin for first play.\nIt lands on heads so it looks like you are going first.\nEither throw a normal shot (1) or a trick shot (2).\n\n|<===========================================>|\n\n')
+		playerInput(action,mobhealth,playerHealth)
+	else:
+		print ('You flip a coin for first play.\nIt lands on tails so it looks like ' TGs[MOB]' is going first.\n\n|<===========================================>|\n\n')
+		mobInput(action,mobhealth,playerHealth)
+
+def playerTurn(action,mobHealth,playerHealth):
+	if playerHealth > 0:
+		playerInput = input('Take your shot\n-->')
+		randomInput= random.randint(1,3)
+		if playerInput == 1|2:
+   			if playerInput>randomInput:
+       			mobHealth=mobHealth-1
+       			print ('You throw the ball and get it into one of ', TGs[MOB], ' cups.')
+				mobHealth = mobHealth - playerInput
+       			print (TGs[MOB], 'has ',mobHealth, ' cups left.')
+				print ('You get another turn\n\n|<===========================================>|\n\n')
+   			else playerInput != randomInput:
+       			print ('You missed!')
+       			print (TGs[MOB], 'still has',mobHealth, 'cups left.')
+				mobTurn(action,mobHealth,playerHealth)
+		else:
+			print ('Everyone is waiting for you to throw!')
+       		print ('Enter 1 for a steady shot, or 2 for a trick shot.')
+	else:
+		print ('You have lost all of your cups.')
+		print ('YOU LOSE!')
+		print ('Would you like to try again?')
+		retry input('-->').lower
+		if retry == 'yes'|'y':
+			tyGwyndo(action)
+		else:
+			kitchen(action)
+
+def mobTurn(action,mobHealth,playerHealth):
+   	if mobHealth > 0:
+       	print (TGs[MOB], ' lines up a shot and throws...')
+       	mobInput = random.randint(1,2)
+       	mRandomInput = random.randint(1,3)
+       	if mobInput > mRandomInput:
+           	print (TGs[MOB], ' gets the shot in one of your cups!')
+           	playerHealth = playerHealth - mRandomInput
+           	print ('You have ',playerHealth, ' cups left.')
+			print (TGs[mob],' gets another turn!\n\n|<===========================================>|\n\n')
+			mobTurn(action,mobHealth,playerHealth)
+       	elif mobInput!= mRandomInput:
+           	print (TGs[MOB], ' missed!')
+           	print ('You still have ',playerHealth, ' cups left.')
+			print ('Now it is your turn.\n\n|<===========================================>|\n\n')
+			playerTurn(action,playerHealth,mobHealth)
+	else:
+		print (TGs[MOB], 'has lost all of their cups.')
+    	print ('YOU WIN!')
+		print ('Would you like to try again?')
+		retry input('-->').lower
+		if retry == 'yes'|'y':
+			tyGwyndo(action)
+		else:
+			drunk(action)
 
 #STARTING BLOCK
 
@@ -75,7 +173,7 @@ def bedStart(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkSt
 			action = input("When you have decided where to go, type below and hit [enter]\n-->").lower()
 		else: action = input("That isn\'t a location in the room, try again!\n-->").lower()
 
-def corridorStart():
+def corridorStart(action):
 	action = input("You appear to have completed this area, collecting all of the items you need to progress.\nThe door closes behind you.\nTo your left is the kitchen. You can hear everyone pre-drinking and playing Ty Gwyn Do.\nTo your right is the exit.\n\nWhere do you go next?\n-->").lower
 		if action == "go to kitchen"
 			kitchen()
@@ -100,7 +198,7 @@ def corridorStart():
 		elif action == "go to door":
 			door(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation,wardrobeStatus,wardrobeLocation,shelfStatus,shelfItemLocation,doorStatus,areaStatus)
 			break
-		else: print(showInstructions)
+		else: print (showInstructions)
 			action = input("\n\nPlease try again when you are ready\n-->").lower		
 
 #UNIVERSAL BLOCKS
@@ -275,7 +373,7 @@ def bedNest(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkSta
         elif action == "under your pillow"
             if bedItemLocation == 4:
             	eb = eb + 1
-               	print("\nYou look under your pillow and you see a pair of old boxers (which should probably go in the wash) and your watch which you collect and place on your wrist\n\n|<===========================================>|\n")
+               	print ("\nYou look under your pillow and you see a pair of old boxers (which should probably go in the wash) and your watch which you collect and place on your wrist\n\n|<===========================================>|\n")
                 bedStatus = "complete"
 				inventory.append("watch")
 				bed(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation,wardrobeStatus,wardrobeLocation,shelfStatus,shelfItemLocation,doorStatus,areaStatus)
@@ -587,7 +685,11 @@ def door(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus
     	print ("it appears you have not quote completed this area yet!\nHave a look around until you have completed this area, then try again!\n-->")
 		bedStart(action,deskStatus,deskItemLocation,bedStatus,bedItemLocation,sinkStatus,sinkItemLocation,wardrobeStatus,wardrobeLocation,shelfStatus,shelfItemLocation,doorStatus,areaStatus) 
 				
-		
+#KITCHEN BLOCK
+def kitchen (action):
+    print ('TBC - Try another section')
+	action = input('\n-->')
+
 #End of Header ---------------------------------------------------------------------------->
 
 e1 = 1
@@ -596,16 +698,16 @@ print ("\nWelcome to the Ty Gwyn night out adventure!\n\nIf you ever get stuck, 
 
 def Player():
 	#Ask the user their name to determine starting point
-	print("But before we start, what is your name?\n-->")
+	print ("But before we start, what is your name?\n-->")
 
 def showStatus():
 	#print the player's current status
-	print("===========================================")
-	print("You are in " + rooms[currentRoom]["name"])
-	print("Inventory : " + str(inventory))
+	print ("===========================================")
+	print ("You are in " + rooms[currentRoom]["name"])
+	print ("Inventory : " + str(inventory))
 	if "item" in rooms[currentRoom]:
-		print("There is a " + rooms[currentRoom]["item"])
-	print("===========================================")
+		print ("There is a " + rooms[currentRoom]["item"])
+	print ("===========================================")
 
 #Dictionary of rooms (map of game)
 rooms = {
@@ -641,7 +743,7 @@ while (e1 == 1):
 		break
 	else: playerName=input("\nSorry, I don't recognise that name! please try again \n-->").lower()
 
-print("\nOh so you are the famous %s! Let's put you in your room!\n\n|<===========================================>|\n\n"	% (playerName))
+print ("\nOh so you are the famous %s! Let's put you in your room!\n\n|<===========================================>|\n\n"	% (playerName))
 	
 #Define Starting Point
 if playerName == "jack":
@@ -672,7 +774,7 @@ while True:
 			currentRoom = rooms[currentRoom][move[1]]
 			#there is no door to the next room
 		else:
-			print("You can't go that way!")
+			print ("You can't go that way!")
 	#if they type 'get' first
 	if move[0] == "get" :
 		#if the room contains an item, and the item is the one they want to get
@@ -680,25 +782,25 @@ while True:
 			#add the item to the inventory
 			inventory += [move[1]]
 			#display a helpful message
-			print(move[1] + " got!")
+			print (move[1] + " got!")
 			#delete item from room
 			del rooms[currentRoom]["item"]
 		#otherwise if the item isn't there
 		else:
 			#tell them they can't have it
-			print("Can't get " + move[1] + "!")
+			print ("Can't get " + move[1] + "!")
 
 	#END SCENARIOS
 	if currentRoom == 5 and "bottle" not in inventory:
-		print("You cannot leave in the taxi until you are pissed!")
+		print ("You cannot leave in the taxi until you are pissed!")
 		#VICTORY
 	elif currentRoom == 5 and "bottle" in inventory:
-		print("You down the bottle of vodka and enter the taxi.")
-		print("YOU WIN")
+		print ("You down the bottle of vodka and enter the taxi.")
+		print ("YOU WIN")
 		break
 		#GAME OVER
 	elif currentRoom == 6 and "bottle" not in inventory:
-		print("You cannot go anywhere or do anything but lose.")
-		print("Try to have a cooler name next time.")
-		print("GAME OVER")
+		print ("You cannot go anywhere or do anything but lose.")
+		print ("Try to have a cooler name next time.")
+		print ("GAME OVER")
 		break
